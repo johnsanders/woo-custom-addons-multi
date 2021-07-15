@@ -1,0 +1,7 @@
+*.log
+*.swp
+*.swo
+dist
+node_modules
+sentryToken.js
+updateBundleFilename.js

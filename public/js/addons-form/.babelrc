@@ -1,0 +1,30 @@
+{
+	"presets": [
+		"@babel/preset-typescript",
+		"@babel/preset-react",
+		[
+			"@babel/preset-env",
+			{
+				"forceAllTransforms": true,
+				"modules": false,
+				"loose": true,
+				"exclude": [
+					"transform-regenerator"
+				],
+				"targets": {
+					"browsers": [
+						"last 2 chrome versions",
+						"last 2 firefox versions",
+						"last 2 safari versions"
+					]
+				}
+			}
+		]
+	],
+	"plugins": [
+		"@babel/transform-runtime"
+	],
+	"exclude": [
+		"regenerator-runtime"
+	]
+}

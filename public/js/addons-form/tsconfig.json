@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"sourceMap": true,
+		"module": "commonjs",
+		"lib": ["dom", "esnext"],
+		"target": "es6",
+		"jsx": "react",
+		"esModuleInterop": true,
+		"noImplicitAny": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"resolveJsonModule": true,
+		"strict": true
+	},
+	"include": ["./src/**/*"],
+}
