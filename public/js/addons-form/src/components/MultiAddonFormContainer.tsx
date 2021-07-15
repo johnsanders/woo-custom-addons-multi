@@ -5,8 +5,10 @@ import { v4 as uuid } from 'uuid';
 
 interface Props {
 	addons: Addon[];
+	errorMessage: string;
 	handleAddAddon: (addon: Addon) => void;
 	handleDeleteAddon: (index: number) => void;
+	resetErrorMessage: () => void;
 	setQuantity: (quantity: number) => void;
 	quantity: number;
 }
@@ -38,6 +40,7 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 		props.handleDeleteAddon(parseInt(index));
 	};
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (props.errorMessage) props.resetErrorMessage();
 		const updater = stateUpdaters[e.target.id];
 		if (!updater) throw new Error('Cannot find state updater');
 		updater(e.target.value);
@@ -46,6 +49,7 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 		<MultiAddonForm
 			addons={props.addons}
 			email={email}
+			errorMessage={props.errorMessage}
 			firstName={firstName}
 			handleAddAttendeeClick={handleAddAttendeeClick}
 			handleChange={handleChange}
