@@ -1,5 +1,6 @@
-export interface CarouselItem {
+export interface Addon {
+	email: string;
+	firstName: string;
 	id: string;
-	targetUrl: string;
-	url: string;
+	surname: string;
 }

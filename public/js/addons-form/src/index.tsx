@@ -1,3 +1,4 @@
+import './styles.css';
 import Main from './components/Main';
 
 import React from 'react';
@@ -9,5 +10,3 @@ const init = () => {
 };
 
 window.addEventListener('load', init);
-
-console.log('fjdskl')
