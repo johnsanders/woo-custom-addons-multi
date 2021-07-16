@@ -177,6 +177,7 @@ class Woo_Custom_Addons_Multi
 		$this->loader->add_action('woocommerce_before_add_to_cart_form', $plugin_public, 'inject_seats_form');
 		$this->loader->add_action('woocommerce_add_to_cart', $plugin_public, 'add_to_cart');
 		$this->loader->add_action('woocommerce_cart_item_quantity', $plugin_public, 'cart_item_quantity');
+		$this->loader->add_filter('woocommerce_get_price_html', $plugin_public, 'get_price_html');
 	}
 
 	/**

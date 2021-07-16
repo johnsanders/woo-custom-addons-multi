@@ -6,7 +6,8 @@ import { render } from 'react-dom';
 
 const init = () => {
 	document.removeEventListener('load', init);
-	render(<Main />, document.getElementById('addonsForm'));
+	const addonsForm = document.getElementById('addonsForm');
+	if (addonsForm) render(<Main />, addonsForm);
 };
 
 window.addEventListener('load', init);

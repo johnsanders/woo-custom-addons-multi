@@ -3,7 +3,6 @@ import MultiAddonFormContainer from './MultiAddonFormContainer';
 import React from 'react';
 
 const Main: React.FC = () => {
-	const addToCartButtonRef = React.useRef<HTMLInputElement>();
 	const seatsDataElRef = React.useRef<HTMLInputElement>();
 	const quantityElRef = React.useRef<HTMLInputElement>();
 	const quantityDisplayElRef = React.useRef<HTMLSpanElement>();
@@ -21,22 +20,9 @@ const Main: React.FC = () => {
 		const seatsDataEl = document.getElementById('seatsdata');
 		if (!seatsDataEl) throw new Error('Cannot find seatsData input');
 		seatsDataElRef.current = seatsDataEl as HTMLInputElement;
-		const priceElement = document.querySelector('.price');
-		if (priceElement) priceElement.innerHTML += '<span id="quantityMultiplier"></span>';
-		const quantityDisplayEl = document.getElementById('quantityMultiplier');
+		const quantityDisplayEl = document.getElementById('priceSuffix');
 		if (!quantityDisplayEl) throw new Error('Cannot find quantity display element');
 		quantityDisplayElRef.current = quantityDisplayEl;
-		const handleAddToCartClick = (e: Event) => {
-			console.log(addons.length);
-			if (addons.length === 0) {
-				setErrorMessage('You must enter at least one attendee to add this course to your cart.');
-				e.preventDefault();
-			}
-		};
-		const addToCartButton = document.querySelector('button[name="add-to-cart"');
-		console.log(addToCartButtonRef);
-		if (!addToCartButton) throw new Error('Cannot find Add to Cart button');
-		addToCartButton?.addEventListener('click', handleAddToCartClick);
 	}, []);
 	React.useEffect(() => {
 		if (!quantityElRef.current) throw new Error('Cannot set quantity');
@@ -57,6 +43,7 @@ const Main: React.FC = () => {
 			handleDeleteAddon={handleDeleteAddon}
 			quantity={quantity}
 			resetErrorMessage={resetErrorMessage}
+			setErrorMessage={setErrorMessage}
 			setQuantity={setQuantity}
 		/>
 	);

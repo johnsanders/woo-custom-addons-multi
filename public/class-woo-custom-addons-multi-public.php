@@ -56,7 +56,6 @@ class Woo_Custom_Addons_Multi_Public
 	public function enqueue_styles()
 	{
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'js/addons-form/dist/main.css', array(), $this->version, 'all');
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version, 'all');
 	}
 	public function enqueue_scripts()
 	{
@@ -77,5 +76,9 @@ class Woo_Custom_Addons_Multi_Public
 		preg_match($pattern, $product_quantity, $matches);
 		if ($matches[1]) return $matches[1];
 		return $product_quantity;
+	}
+	public function get_price_html($price)
+	{
+		return $price . "<span id='priceSuffix'></span>";
 	}
 }

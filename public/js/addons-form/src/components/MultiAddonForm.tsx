@@ -1,4 +1,5 @@
 import { Addon } from '../types';
+import AddonsTable from './AddonsTable';
 import React from 'react';
 
 interface Props {
@@ -9,52 +10,15 @@ interface Props {
 	handleAddAttendeeClick: () => void;
 	handleDeleteClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleKeyDown: (e: React.KeyboardEvent<HTMLDivElement>) => void;
 	surname: string;
 }
 
 const MultiAddonForm: React.FC<Props> = (props: Props) => (
 	<>
 		<h3>Attendees</h3>
-		<table>
-			<thead>
-				<tr>
-					<th style={{ width: '10%' }} />
-					<th style={{ width: '30%' }}>First Name</th>
-					<th style={{ width: '30%' }}>Surname</th>
-					<th style={{ width: '18%' }}>Email</th>
-					<th style={{ width: '12%' }} />
-				</tr>
-			</thead>
-			<tbody>
-				{props.addons.length === 0 ? (
-					<tr>
-						<td colSpan={5} style={{ textAlign: 'center' }}>
-							No attendees added yet. Use the form below to add your first attendee.
-						</td>
-					</tr>
-				) : (
-					props.addons.map((addon, i) => (
-						<tr key={addon.id}>
-							<td>{(i + 1).toString()}</td>
-							<td>{addon.firstName}</td>
-							<td>{addon.surname}</td>
-							<td>{addon.email}</td>
-							<td>
-								<a
-									className="button"
-									data-index={i.toString()}
-									onClick={props.handleDeleteClick}
-									style={{ padding: '0.5em' }}
-								>
-									&times;
-								</a>
-							</td>
-						</tr>
-					))
-				)}
-			</tbody>
-		</table>
-		<div className="addonMultiForm">
+		<AddonsTable addons={props.addons} handleDeleteClick={props.handleDeleteClick} />
+		<div className="addonMultiForm" onKeyDown={props.handleKeyDown}>
 			<div className="addonMultiFormElement">
 				<label htmlFor="attendeeFirstName">First Name</label>
 				<input
