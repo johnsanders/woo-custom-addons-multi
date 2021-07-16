@@ -61,14 +61,9 @@ class Woo_Custom_Addons_Multi_Public
 	{
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/addons-form/dist/index.js', [], $this->version, false);
 	}
-	public function inject_seats_form()
+	public function inject_addons_form()
 	{
 		echo '<div id="addonsForm"></div>';
-	}
-	public function add_to_cart()
-	{
-		$cart = WC()->cart->get_cart();
-		echo json_encode($cart);
 	}
 	public function cart_item_quantity($product_quantity)
 	{
