@@ -4,7 +4,7 @@
  *
  * @link              johnsanders.tv
  * @since             1.0.0
- * @package           Woo_Custom_Addons_Multi
+ * @package           Cnn_Academy_Mods
  *
  * @wordpress-plugin
  * Plugin Name:       Woo Custom Addons Multi
@@ -29,30 +29,30 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('WOO_CUSTOM_ADDONS_MULTI_VERSION', '1.0.0');
+define('CNN_ACADEMY_MODS_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-woo-custom-addons-multi-activator.php
  */
-function activate_woo_custom_addons_multi()
+function activate_CNN_ACADEMY_MODS()
 {
 	require_once plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi-activator.php';
-	Woo_Custom_Addons_Multi_Activator::activate();
+	Cnn_Academy_Mods_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-woo-custom-addons-multi-deactivator.php
  */
-function deactivate_woo_custom_addons_multi()
+function deactivate_CNN_ACADEMY_MODS()
 {
 	require_once plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi-deactivator.php';
-	Woo_Custom_Addons_Multi_Deactivator::deactivate();
+	Cnn_Academy_Mods_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_woo_custom_addons_multi');
-register_deactivation_hook(__FILE__, 'deactivate_woo_custom_addons_multi');
+register_activation_hook(__FILE__, 'activate_CNN_ACADEMY_MODS');
+register_deactivation_hook(__FILE__, 'deactivate_CNN_ACADEMY_MODS');
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -69,10 +69,9 @@ require plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi.php'
  *
  * @since    1.0.0
  */
-function run_woo_custom_addons_multi()
+function run_CNN_ACADEMY_MODS()
 {
-
-	$plugin = new Woo_Custom_Addons_Multi();
+	$plugin = new Cnn_Academy_Mods();
 	$plugin->run();
 }
-run_woo_custom_addons_multi();
+run_CNN_ACADEMY_MODS();

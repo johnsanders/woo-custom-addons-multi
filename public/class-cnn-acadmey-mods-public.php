@@ -6,8 +6,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/public
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/public
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/public
  * @author     John Sanders <jwsanders@gmail.com>
  */
-class Woo_Custom_Addons_Multi_Public
+class Cnn_Academy_Mods_Public
 {
 
 	/**
@@ -55,6 +55,7 @@ class Woo_Custom_Addons_Multi_Public
 	}
 	public function enqueue_styles()
 	{
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/style.css', array(), $this->version, 'all');
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'js/addons-form/dist/main.css', array(), $this->version, 'all');
 	}
 	public function enqueue_scripts()
@@ -74,6 +75,20 @@ class Woo_Custom_Addons_Multi_Public
 	}
 	public function get_price_html($price)
 	{
-		return $price . "<span id='priceSuffix'></span>";
+		return "US" . $price . "<span id='priceSuffix'></span>";
+	}
+	public function get_item_data($itemData, $cartItem)
+	{
+		$attendees = json_decode($cartItem["wcpa_data"][0]['value']);
+		$attendeesString = "<table class='addonsMulti'><tbody>";
+		foreach ($attendees as $attendee) {
+			$firstName = $attendee->firstName;
+			$surname = $attendee->surname;
+			$email = $attendee->email;
+			$attendeesString .= "<tr><td>$firstName $surname</td><td>$email</td></tr>";
+		}
+		$attendeesString .= "</tbody></table>";
+		array_push($itemData, ["key" => "Attendees", "value" => $attendeesString]);
+		return $itemData;
 	}
 }

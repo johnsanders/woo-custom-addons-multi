@@ -9,8 +9,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  * @author     John Sanders <jwsanders@gmail.com>
  */
-class Woo_Custom_Addons_Multi
+class Cnn_Academy_Mods
 {
 
 	/**
@@ -36,7 +36,7 @@ class Woo_Custom_Addons_Multi
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Woo_Custom_Addons_Multi_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Cnn_Academy_Mods_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -69,8 +69,8 @@ class Woo_Custom_Addons_Multi
 	 */
 	public function __construct()
 	{
-		if (defined('WOO_CUSTOM_ADDONS_MULTI_VERSION')) {
-			$this->version = WOO_CUSTOM_ADDONS_MULTI_VERSION;
+		if (defined('CNN_ACADEMY_MODS_VERSION')) {
+			$this->version = CNN_ACADEMY_MODS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -87,10 +87,10 @@ class Woo_Custom_Addons_Multi
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Woo_Custom_Addons_Multi_Loader. Orchestrates the hooks of the plugin.
-	 * - Woo_Custom_Addons_Multi_i18n. Defines internationalization functionality.
-	 * - Woo_Custom_Addons_Multi_Admin. Defines all hooks for the admin area.
-	 * - Woo_Custom_Addons_Multi_Public. Defines all hooks for the public side of the site.
+	 * - Cnn_Academy_Mods_Loader. Orchestrates the hooks of the plugin.
+	 * - Cnn_Academy_Mods_i18n. Defines internationalization functionality.
+	 * - Cnn_Academy_Mods_Admin. Defines all hooks for the admin area.
+	 * - Cnn_Academy_Mods_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -124,13 +124,13 @@ class Woo_Custom_Addons_Multi
 		 */
 		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-woo-custom-addons-multi-public.php';
 
-		$this->loader = new Woo_Custom_Addons_Multi_Loader();
+		$this->loader = new Cnn_Academy_Mods_Loader();
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Woo_Custom_Addons_Multi_i18n class in order to set the domain and to register the hook
+	 * Uses the Cnn_Academy_Mods_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -139,7 +139,7 @@ class Woo_Custom_Addons_Multi
 	private function set_locale()
 	{
 
-		$plugin_i18n = new Woo_Custom_Addons_Multi_i18n();
+		$plugin_i18n = new Cnn_Academy_Mods_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
@@ -153,9 +153,7 @@ class Woo_Custom_Addons_Multi
 	 */
 	private function define_admin_hooks()
 	{
-
-		$plugin_admin = new Woo_Custom_Addons_Multi_Admin($this->get_plugin_name(), $this->get_version());
-
+		$plugin_admin = new Cnn_Academy_Mods_Admin($this->get_plugin_name(), $this->get_version());
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 	}
@@ -169,14 +167,13 @@ class Woo_Custom_Addons_Multi
 	 */
 	private function define_public_hooks()
 	{
-
-		$plugin_public = new Woo_Custom_Addons_Multi_Public($this->get_plugin_name(), $this->get_version());
-
+		$plugin_public = new Cnn_Academy_Mods_Public($this->get_plugin_name(), $this->get_version());
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 		$this->loader->add_action('woocommerce_before_add_to_cart_form', $plugin_public, 'inject_addons_form');
 		$this->loader->add_action('woocommerce_cart_item_quantity', $plugin_public, 'cart_item_quantity');
 		$this->loader->add_filter('woocommerce_get_price_html', $plugin_public, 'get_price_html');
+		$this->loader->add_filter('woocommerce_get_item_data', $plugin_public, 'get_item_data', 10, 2);
 	}
 
 	/**
@@ -205,7 +202,7 @@ class Woo_Custom_Addons_Multi
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Woo_Custom_Addons_Multi_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Cnn_Academy_Mods_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader()
 	{

@@ -6,8 +6,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  */
 
 /**
@@ -16,11 +16,12 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  * @author     John Sanders <jwsanders@gmail.com>
  */
-class Woo_Custom_Addons_Multi_Deactivator {
+class Cnn_Academy_Mods_Deactivator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,8 +30,7 @@ class Woo_Custom_Addons_Multi_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate() {
-
+	public static function deactivate()
+	{
 	}
-
 }

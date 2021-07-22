@@ -22,10 +22,10 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
+ * @package    Cnn_Academy_Mods
  */
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }

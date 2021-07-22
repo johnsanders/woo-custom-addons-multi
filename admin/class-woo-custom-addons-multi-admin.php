@@ -6,8 +6,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/admin
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/admin
  */
 
 /**
@@ -16,11 +16,12 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/admin
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/admin
  * @author     John Sanders <jwsanders@gmail.com>
  */
-class Woo_Custom_Addons_Multi_Admin {
+class Cnn_Academy_Mods_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Woo_Custom_Addons_Multi_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,22 +60,22 @@ class Woo_Custom_Addons_Multi_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Woo_Custom_Addons_Multi_Loader as all of the hooks are defined
+		 * defined in Cnn_Academy_Mods_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Woo_Custom_Addons_Multi_Loader will then create the relationship
+		 * The Cnn_Academy_Mods_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woo-custom-addons-multi-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/woo-custom-addons-multi-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,22 +83,21 @@ class Woo_Custom_Addons_Multi_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Woo_Custom_Addons_Multi_Loader as all of the hooks are defined
+		 * defined in Cnn_Academy_Mods_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Woo_Custom_Addons_Multi_Loader will then create the relationship
+		 * The Cnn_Academy_Mods_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woo-custom-addons-multi-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/woo-custom-addons-multi-admin.js', array('jquery'), $this->version, false);
 	}
-
 }

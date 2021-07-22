@@ -9,8 +9,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  */
 
 /**
@@ -20,11 +20,12 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/includes
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/includes
  * @author     John Sanders <jwsanders@gmail.com>
  */
-class Woo_Custom_Addons_Multi_i18n {
+class Cnn_Academy_Mods_i18n
+{
 
 
 	/**
@@ -32,16 +33,13 @@ class Woo_Custom_Addons_Multi_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function load_plugin_textdomain()
+	{
 
 		load_plugin_textdomain(
 			'woo-custom-addons-multi',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
-
 	}
-
-
-
 }

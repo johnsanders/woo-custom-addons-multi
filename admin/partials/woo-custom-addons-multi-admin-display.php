@@ -8,8 +8,8 @@
  * @link       johnsanders.tv
  * @since      1.0.0
  *
- * @package    Woo_Custom_Addons_Multi
- * @subpackage Woo_Custom_Addons_Multi/admin/partials
+ * @package    Cnn_Academy_Mods
+ * @subpackage Cnn_Academy_Mods/admin/partials
  */
 ?>
 
