@@ -37,7 +37,7 @@ class Cnn_Academy_Mods_i18n
 	{
 
 		load_plugin_textdomain(
-			'woo-custom-addons-multi',
+			'cnn-academy-mods',
 			false,
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);

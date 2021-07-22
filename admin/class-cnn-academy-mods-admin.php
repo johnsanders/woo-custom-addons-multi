@@ -75,7 +75,7 @@ class Cnn_Academy_Mods_Admin
 		 * class.
 		 */
 
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/woo-custom-addons-multi-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/cnn-academy-mods-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -98,6 +98,6 @@ class Cnn_Academy_Mods_Admin
 		 * class.
 		 */
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/woo-custom-addons-multi-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/cnn-academy-mods-admin.js', [], $this->version, false);
 	}
 }

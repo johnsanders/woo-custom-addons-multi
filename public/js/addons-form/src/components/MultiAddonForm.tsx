@@ -1,5 +1,5 @@
 import { Addon } from '../types';
-import AddonsTable from './AddonsTable';
+import MultiAddonsTable from './MultiAddonsTable';
 import React from 'react';
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 const MultiAddonForm: React.FC<Props> = (props: Props) => (
 	<>
 		<h3>Attendees</h3>
-		<AddonsTable addons={props.addons} handleDeleteClick={props.handleDeleteClick} />
+		<MultiAddonsTable addons={props.addons} handleDeleteClick={props.handleDeleteClick} />
 		<div className="addonMultiForm" onKeyDown={props.handleKeyDown}>
 			<div className="addonMultiFormElement">
 				<label htmlFor="attendeeFirstName">First Name</label>

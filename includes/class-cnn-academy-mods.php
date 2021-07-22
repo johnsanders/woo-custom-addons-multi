@@ -74,7 +74,7 @@ class Cnn_Academy_Mods
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'woo-custom-addons-multi';
+		$this->plugin_name = 'cnn-academy-mods';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -105,24 +105,24 @@ class Cnn_Academy_Mods
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-woo-custom-addons-multi-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-cnn-academy-mods-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-woo-custom-addons-multi-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-cnn-academy-mods-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-woo-custom-addons-multi-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-cnn-academy-mods-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-woo-custom-addons-multi-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-cnn-academy-mods-public.php';
 
 		$this->loader = new Cnn_Academy_Mods_Loader();
 	}
@@ -174,6 +174,7 @@ class Cnn_Academy_Mods
 		$this->loader->add_action('woocommerce_cart_item_quantity', $plugin_public, 'cart_item_quantity');
 		$this->loader->add_filter('woocommerce_get_price_html', $plugin_public, 'get_price_html');
 		$this->loader->add_filter('woocommerce_get_item_data', $plugin_public, 'get_item_data', 10, 2);
+		$this->loader->add_filter('woocommerce_currency_symbols', $plugin_public, 'currency_symbols');
 	}
 
 	/**

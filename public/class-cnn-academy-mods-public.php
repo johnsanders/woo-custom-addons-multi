@@ -75,7 +75,7 @@ class Cnn_Academy_Mods_Public
 	}
 	public function get_price_html($price)
 	{
-		return "US" . $price . "<span id='priceSuffix'></span>";
+		return $price . "<span id='priceSuffix'></span>";
 	}
 	public function get_item_data($itemData, $cartItem)
 	{
@@ -90,5 +90,10 @@ class Cnn_Academy_Mods_Public
 		$attendeesString .= "</tbody></table>";
 		array_push($itemData, ["key" => "Attendees", "value" => $attendeesString]);
 		return $itemData;
+	}
+	public function currency_symbols($symbols)
+	{
+		$symbols["USD"] = "US&#36;";
+		return $symbols;
 	}
 }

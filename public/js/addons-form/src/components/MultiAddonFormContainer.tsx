@@ -44,6 +44,10 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 	}, [handleAddToCartClick]);
 	const handleAddAttendeeClick = (): void => {
 		if (firstName && surname && email) {
+			if (props.addons.find((addon) => addon.email === email)) {
+				setErrorMessage('An attendee with that email address has already been added.');
+				return;
+			}
 			const newQuantity = props.addons.length + 1;
 			props.setQuantity(newQuantity);
 			props.handleAddAddon({ email, firstName, id: uuid(), surname });

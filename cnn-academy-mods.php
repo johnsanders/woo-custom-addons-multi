@@ -7,15 +7,15 @@
  * @package           Cnn_Academy_Mods
  *
  * @wordpress-plugin
- * Plugin Name:       Woo Custom Addons Multi
+ * Plugin Name:       CNN Academy Mods
  * Plugin URI:        https://academy.cnn.com
- * Description:       Allow multiple custom addons on single product page
+ * Description:       CNN Academy Customizations
  * Version:           1.0.0
  * Author:            John Sanders
  * Author URI:        johnsanders.tv
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       woo-custom-addons-multi
+ * Text Domain:       cnn-academy-mods
  * Domain Path:       /languages
  */
 
@@ -33,32 +33,32 @@ define('CNN_ACADEMY_MODS_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-woo-custom-addons-multi-activator.php
+ * This action is documented in includes/class-cnn-academy-mods-activator.php
  */
-function activate_CNN_ACADEMY_MODS()
+function activate_cnn_academy_mods()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi-activator.php';
+	require_once plugin_dir_path(__FILE__) . 'includes/class-cnn-academy-mods-activator.php';
 	Cnn_Academy_Mods_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-woo-custom-addons-multi-deactivator.php
+ * This action is documented in includes/class-cnn-academy-mods-deactivator.php
  */
-function deactivate_CNN_ACADEMY_MODS()
+function deactivate_cnn_academy_mods()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi-deactivator.php';
+	require_once plugin_dir_path(__FILE__) . 'includes/class-cnn-academy-mods-deactivator.php';
 	Cnn_Academy_Mods_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_CNN_ACADEMY_MODS');
-register_deactivation_hook(__FILE__, 'deactivate_CNN_ACADEMY_MODS');
+register_activation_hook(__FILE__, 'activate_cnn_academy_mods');
+register_deactivation_hook(__FILE__, 'deactivate_cnn_academy_mods');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi.php';
+require plugin_dir_path(__FILE__) . 'includes/class-cnn-academy-mods.php';
 
 /**
  * Begins execution of the plugin.
@@ -69,9 +69,9 @@ require plugin_dir_path(__FILE__) . 'includes/class-woo-custom-addons-multi.php'
  *
  * @since    1.0.0
  */
-function run_CNN_ACADEMY_MODS()
+function run_cnn_academy_mods()
 {
 	$plugin = new Cnn_Academy_Mods();
 	$plugin->run();
 }
-run_CNN_ACADEMY_MODS();
+run_cnn_academy_mods();
