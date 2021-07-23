@@ -103,8 +103,35 @@ class Cnn_Academy_Mods_Public
 		// https://www.linkedin.com/sharing/share-offsite/?url=https://cnn.com
 		// https://web.whatsapp.com/send?text=Sassy%20Social%20Share%20Demo%20https%3A%2F%2Fwww.heateor.com%2Fsassy-social-share-demo%2F
 	}
-	public function thankyou_order_received_text($str, $order)
+	public function order_item_meta_end($item_id, $item)
 	{
-		return $str;
+		$metaData = $item->get_data()['meta_data'];
+		foreach ($metaData as $metaDatum) {
+			if ($metaDatum->key === '_Seats Data') {
+				$seats = json_decode($metaDatum->value);
+				echo '<table class="addonsMulti">';
+				foreach ($seats as $seat) {
+					$name = $seat->firstName . ' ' . $seat->surname;
+					$email = $seat->email;
+					echo "<tr><td>$name</td><td>$email</td></tr>";
+				}
+				echo '</table>';
+			}
+		}
+	}
+	public function thankyou_order_received_text()
+	{
+		return '
+			<p>
+				Thank you. Your order has been received and is being processed.
+				The attendee(s) you registered will receive an email with instructions for logging onto the CNN Academy Hub.
+				Usually this happens within a few minutes, but can take up to 24 hours in some cases.
+			</p>
+			<p>
+				You will shortly receive a email with this information.
+				Then when your order is fully completed, we will send a final confirmation along with a PDF invoice.
+			</p>
+			<p>If you have any problems, please email <a href="mailto:cnnacademy@turner.com">cnnacademy@turner.com</a></p>
+		';
 	}
 }
