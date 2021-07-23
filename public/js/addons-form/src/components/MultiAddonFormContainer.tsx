@@ -2,7 +2,7 @@ import { Addon } from '../types';
 import MultiAddonForm from './MultiAddonForm';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-
+import { validate } from 'email-validator';
 interface Props {
 	addons: Addon[];
 	errorMessage: string;
@@ -10,11 +10,10 @@ interface Props {
 	handleDeleteAddon: (index: number) => void;
 	resetErrorMessage: () => void;
 	setErrorMessage: (errorMessage: string) => void;
-	setQuantity: (quantity: number) => void;
-	quantity: number;
 }
 
 const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
+	const finalAddonAddedRef = React.useRef(false);
 	const [firstName, setFirstName] = React.useState('');
 	const [surname, setSurname] = React.useState('');
 	const [email, setEmail] = React.useState('');
@@ -23,18 +22,52 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 		attendeeFirstName: setFirstName,
 		attendeeSurname: setSurname,
 	};
+	const clearInputs = React.useCallback(() => {
+		setFirstName('');
+		setSurname('');
+		setEmail('');
+	}, [setFirstName, setSurname, setEmail]);
 	const { addons, handleAddAddon, setErrorMessage } = props;
+	const validateInput = React.useCallback(() => {
+		console.log(validate(email));
+		if (addons.find((addon) => addon.email === email)) {
+			setErrorMessage('An attendee with that email address has already been added.');
+			return false;
+		}
+		if (!validate(email)) {
+			setErrorMessage('That does not appear to be a valid email address.');
+			return false;
+		}
+		return true;
+	}, [addons, email, setErrorMessage]);
 	const handleAddToCartClick = React.useCallback(
 		(e: Event) => {
-			if (addons.length > 0) return;
+			if (finalAddonAddedRef.current) return;
 			if (firstName && surname && email) {
+				e.preventDefault();
+				if (!validateInput()) return;
+				finalAddonAddedRef.current = true;
+				const button = e.currentTarget as HTMLButtonElement;
 				handleAddAddon({ email, firstName, id: uuid(), surname });
+				clearInputs();
+				setTimeout(() => button.click(), 100);
 				return;
 			}
-			setErrorMessage('You must enter at least one attendee to add this course to your cart.');
-			e.preventDefault();
+			if (addons.length === 0) {
+				setErrorMessage('You must enter at least one attendee to add this course to your cart.');
+				e.preventDefault();
+			}
 		},
-		[handleAddAddon, setErrorMessage, addons, email, firstName, surname],
+		[
+			addons,
+			clearInputs,
+			handleAddAddon,
+			setErrorMessage,
+			email,
+			firstName,
+			surname,
+			validateInput,
+		],
 	);
 	React.useEffect(() => {
 		const addToCartButton = document.querySelector('button[name="add-to-cart"');
@@ -43,24 +76,15 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 		return () => addToCartButton.removeEventListener('click', handleAddToCartClick);
 	}, [handleAddToCartClick]);
 	const handleAddAttendeeClick = (): void => {
+		if (!validateInput()) return;
 		if (firstName && surname && email) {
-			if (props.addons.find((addon) => addon.email === email)) {
-				setErrorMessage('An attendee with that email address has already been added.');
-				return;
-			}
-			const newQuantity = props.addons.length + 1;
-			props.setQuantity(newQuantity);
 			props.handleAddAddon({ email, firstName, id: uuid(), surname });
-			setFirstName('');
-			setSurname('');
-			setEmail('');
+			clearInputs();
 		}
 	};
 	const handleDeleteClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		const index = e.currentTarget.dataset.index;
 		if (index === undefined) throw new Error('Cannot get index to delete');
-		const newQuantity = props.addons.length - 1;
-		props.setQuantity(newQuantity);
 		props.handleDeleteAddon(parseInt(index));
 	};
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,8 +95,8 @@ const MultiAddonFormContainer: React.FC<Props> = (props: Props) => {
 	};
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
 		if (e.key === 'Enter') {
-			handleAddAttendeeClick();
 			e.preventDefault();
+			handleAddAttendeeClick();
 		}
 	};
 	return (

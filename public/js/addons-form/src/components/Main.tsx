@@ -8,7 +8,6 @@ const Main: React.FC = () => {
 	const quantityDisplayElRef = React.useRef<HTMLSpanElement>();
 	const [addons, setAddons] = React.useState<Addon[]>([]);
 	const [errorMessage, setErrorMessage] = React.useState('');
-	const [quantity, setQuantity] = React.useState(1);
 	const handleAddAddon = (addon: Addon): void => setAddons([...addons, addon]);
 	const handleDeleteAddon = (index: number): void =>
 		setAddons(addons.filter((_addon, i) => i !== index));
@@ -25,12 +24,13 @@ const Main: React.FC = () => {
 		quantityDisplayElRef.current = quantityDisplayEl;
 	}, []);
 	React.useEffect(() => {
+		const quantity = addons.length;
 		if (!quantityElRef.current) throw new Error('Cannot set quantity');
 		quantityElRef.current.value = quantity.toString();
 		if (!quantityDisplayElRef.current) throw new Error('Cannot set quantity display');
 		quantityDisplayElRef.current.innerHTML =
 			quantity <= 1 ? '' : ` (&times;${quantity.toString()})`;
-	}, [quantity]);
+	}, [addons]);
 	React.useEffect(() => {
 		if (!seatsDataElRef.current) throw new Error('seatsDataElRef is undefined');
 		seatsDataElRef.current.value = JSON.stringify(addons);
@@ -41,10 +41,8 @@ const Main: React.FC = () => {
 			errorMessage={errorMessage}
 			handleAddAddon={handleAddAddon}
 			handleDeleteAddon={handleDeleteAddon}
-			quantity={quantity}
 			resetErrorMessage={resetErrorMessage}
 			setErrorMessage={setErrorMessage}
-			setQuantity={setQuantity}
 		/>
 	);
 };
