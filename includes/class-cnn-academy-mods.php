@@ -175,6 +175,7 @@ class Cnn_Academy_Mods
 		$this->loader->add_filter('woocommerce_get_price_html', $plugin_public, 'get_price_html');
 		$this->loader->add_filter('woocommerce_get_item_data', $plugin_public, 'get_item_data', 10, 2);
 		$this->loader->add_filter('woocommerce_currency_symbols', $plugin_public, 'currency_symbols');
+		$this->loader->add_filter('woocommerce_thankyou_order_received_text', $plugin_public, 'thankyou_order_received_text', 10, 2);
 	}
 
 	/**
