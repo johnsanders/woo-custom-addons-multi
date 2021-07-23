@@ -96,4 +96,15 @@ class Cnn_Academy_Mods_Public
 		$symbols["USD"] = "US&#36;";
 		return $symbols;
 	}
+	public function add_share_buttons()
+	{
+		// https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.heateor.com%2Fsassy-social-share-demo%2F
+		// https://twitter.com/intent/tweet?text=Check%20out%20this%20course%20from%20CNN%20Academy:%20&url=https://cnn.com
+		// https://www.linkedin.com/sharing/share-offsite/?url=https://cnn.com
+		// https://web.whatsapp.com/send?text=Sassy%20Social%20Share%20Demo%20https%3A%2F%2Fwww.heateor.com%2Fsassy-social-share-demo%2F
+	}
+	public function thankyou_order_received_text($str, $order)
+	{
+		return $str;
+	}
 }

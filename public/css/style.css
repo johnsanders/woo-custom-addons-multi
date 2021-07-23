@@ -4,3 +4,9 @@ table.addonsMulti td {
 .woocommerce-error {
 	background-color: #CC0000 !important;
 }
+.woocommerce-info {
+	background-color: #406B81 !important;
+}
+.woocommerce-message{
+	background-color: #62782E !important;
+}
